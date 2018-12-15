@@ -3,19 +3,18 @@ package Process;
 import java.util.Vector;
 
 public class ProcessManager {
-	private PCB init;
-	private Vector<PCB> pcbv;
-	private short index;
+	private static PCB init = new PCB((short)0, "init", null);
+	private static Vector<PCB> pcbv = vectorInit();
+	private static short index = 0;
 	
-	public ProcessManager()
+	private static Vector<PCB> vectorInit()
 	{
-		init = new PCB((short)0, "init", null);
-		pcbv = new Vector<PCB>();
-		pcbv.add(init);
-		index = 0;
+		Vector<PCB> vec = new Vector<PCB>();
+		vec.add(init);
+		return vec;
 	}
 	
-	public void fork(PCB parent, String name)
+	public static void fork(PCB parent, String name)
 	{		
 		PCB child = new PCB(parent, (short)(index + 1), name);
 		parent.childs.addElement(child);
@@ -23,12 +22,12 @@ public class ProcessManager {
 		index++;
 	}
 	
-	public void exec()
+	public static void exec()
 	{
 		
 	}
 	
-	public void exit(String name)
+	public static void exit(String name)
 	{
 		if(name.equals("init"))
 		{
@@ -47,7 +46,7 @@ public class ProcessManager {
 		}		
 	}
 	
-	public void exit(Short pid)
+	public static void exit(Short pid)
 	{
 		if(pid == 0)
 		{
@@ -66,13 +65,13 @@ public class ProcessManager {
 		}		
 	}
 	
-	public void printProcessTree()
+	public static void printProcessTree()
 	{
 		System.out.println("Process tree:");
 		recursiveTree(init, 0);
 	}
 	
-	public PCB getPcb(Short pid)
+	public static PCB getPcb(Short pid)
 	{
 		for(int i = 0; i< pcbv.size(); i++)
 		{
@@ -81,7 +80,7 @@ public class ProcessManager {
 		return null;
 	}
 	
-	public PCB getPcb(String name)
+	public static PCB getPcb(String name)
 	{
 		for(int i = 0; i< pcbv.size(); i++)
 		{
@@ -90,7 +89,7 @@ public class ProcessManager {
 		return null;
 	}
 	
-	private void recursiveTree(PCB parent, int level)
+	private static void recursiveTree(PCB parent, int level)
 	{
 		for(int i=0; i < level; i++)
 		{
@@ -103,7 +102,7 @@ public class ProcessManager {
 		}
 	}
 	
-	private void removePCB(PCB process, String name)
+	private static void removePCB(PCB process, String name)
 	{
 		for(int i = 0; i < process.childs.size(); i++)
 		{
@@ -124,7 +123,7 @@ public class ProcessManager {
 		}
 	}
 	
-	private void removePCB(PCB process, Short pid)
+	private static void removePCB(PCB process, Short pid)
 	{
 		for(int i = 0; i < process.childs.size(); i++)
 		{
@@ -146,26 +145,25 @@ public class ProcessManager {
 	}
 	
 	
-	/*
+	
 	//testy drzewa i usuwania
 	public static void main(String [] args)
 	{
-		ProcessManager manager = new ProcessManager();
-		manager.fork(manager.init, "proc1es");
-		manager.fork(manager.init, "proc2es");
-		manager.fork(manager.pcbv.get(1), "proc3es");
-		manager.fork(manager.init, "proc4es");		
-		manager.fork(manager.pcbv.get(1), "proc5es");		
-		manager.fork(manager.pcbv.get(4), "proc6es");		
-		manager.fork(manager.pcbv.get(3), "proc7es");	
+		fork(init, "proc1es");
+		fork(init, "proc2es");
+		fork(pcbv.get(1), "proc3es");
+		fork(init, "proc4es");		
+		fork(pcbv.get(1), "proc5es");		
+		fork(pcbv.get(4), "proc6es");		
+		fork(pcbv.get(3), "proc7es");	
 		
-		manager.printProcessTree();		
+		printProcessTree();		
 		System.out.println("-----");
 		
-		manager.exit((short)3);
+		exit((short)3);
 		
 		System.out.println("-----");
-		manager.printProcessTree();
+		printProcessTree();
 		
-	}*/
+	}
 }
