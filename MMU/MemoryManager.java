@@ -16,7 +16,7 @@ public class MemoryManager {
     }
 
 
-    public static void init() {
+    public static void Init() {
 
         for (byte r = 0; r < frameTable.length; ++r) {
 
