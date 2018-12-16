@@ -7,8 +7,10 @@ public class PCB {
 	private State state;
 	public PCB parent;
 	public Vector<PCB> childs;
-	public Byte ax, bx, cx, dx;
+	public Integer ax, bx, cx, dx;
 	public Short programCounter;
+	public boolean carryFlag;
+	public boolean zeroFlag;
 	//priorytety
 	//zasoby
 
@@ -20,6 +22,8 @@ public class PCB {
 		childs = new Vector<PCB>();
 		ax = bx = cx = dx = 0;
 		programCounter = 0;
+		carryFlag = false;
+		zeroFlag = true;
 	}
 	
 	public PCB(PCB p, short newPid, String newName)//konstruktor dla wszystkich innych procesów
@@ -34,6 +38,8 @@ public class PCB {
 		cx = p.cx;
 		dx = p.dx;
 		programCounter = p.programCounter;
+		carryFlag = p.carryFlag;
+		zeroFlag = p.zeroFlag;
 	}
 	
 	public State getState()
