@@ -145,7 +145,7 @@ public class ProcessManager {
 	}
 	
 	
-	
+	/*
 	//testy drzewa i usuwania
 	public static void main(String [] args)
 	{
@@ -165,5 +165,5 @@ public class ProcessManager {
 		System.out.println("-----");
 		printProcessTree();
 		
-	}
+	}*/
 }
