@@ -28,7 +28,7 @@ public class FileStream_API
 
         if(takenDescriptors.size() == 255)
         {
-            return -1;
+            return -2;
         }
 
         int val = random.nextInt(255) + 1;
@@ -56,9 +56,13 @@ public class FileStream_API
                 break;
         }
         //todo: call Open on new created stream
-        if(!bang.getValue().Open())
+        int res = bang.getValue().Open();
+        if(res == - 1)
         {
             return -1;
+        }else if (res == -2)
+        {
+            return -2;
         }
         streams.add(bang);
         takenDescriptors.add(val);

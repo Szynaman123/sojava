@@ -184,10 +184,10 @@ public class INODE
     }
 
     // core.inode.INODE open
-    public void Open()
+    public boolean Open()
     {
         //todo: add file to open file table/increment open number reference
-        OpenFileTable.Open((int) this.i_faddress);
+        return OpenFileTable.Open((int) this.i_faddress);
         //todo: call wait on semaphore in open file table
     }
 

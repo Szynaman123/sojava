@@ -19,7 +19,7 @@ public class OpenFileTable
 
     private static Vector<TableEntry> OFT = new Vector<>();
 
-    public static void Open(Integer id)
+    public static boolean Open(Integer id)
     {
         for (TableEntry pair0 : OFT)
         {
@@ -27,10 +27,11 @@ public class OpenFileTable
             {
                 pair0.refers++;
                 //todo: call wait on sem
-                return;
+                return false;
             }
         }
         OFT.add(new TableEntry(id));
+        return true;
     }
 
     public static void Close(Integer id)

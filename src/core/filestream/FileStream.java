@@ -58,21 +58,24 @@ public class FileStream
         this.wpointer = pointer;
     }
 
-    public boolean Open()
+    public int Open()
     {
         if(ANY_ERRORS || OPENED)
         {
-            return false;
+            return -2;
         }else
         {
+            if(!inode.Open())
+            {
+                return -1;
+            }
             if(mode == FILE_OPEN_MODE.WRITE)
             {
                 inode.DeallocateDataBlocksFile();
                 inode.UpdateINODE();
             }
-            inode.Open();
             OPENED = true;
-            return true;
+            return 1;
         }
     }
 
