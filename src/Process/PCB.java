@@ -9,9 +9,10 @@ public class PCB {
 	public Vector<PCB> childs;
 	public Integer ax, bx, cx, dx;
 	public Short programCounter;
+	public Short amountOfCommand;
 	public boolean carryFlag;
 	public boolean zeroFlag;
-	//priorytety
+	public Integer Tau;
 	//zasoby
 
 	public PCB(short pid, String name, PCB parent)//konstruktor dla inita
@@ -22,8 +23,10 @@ public class PCB {
 		childs = new Vector<PCB>();
 		ax = bx = cx = dx = 0;
 		programCounter = 0;
+		amountOfCommand = 0;
 		carryFlag = false;
 		zeroFlag = true;
+		Tau = -1;
 	}
 	
 	public PCB(PCB p, short newPid, String newName)//konstruktor dla wszystkich innych procesów
@@ -38,8 +41,10 @@ public class PCB {
 		cx = p.cx;
 		dx = p.dx;
 		programCounter = p.programCounter;
+		amountOfCommand = p.amountOfCommand;
 		carryFlag = p.carryFlag;
 		zeroFlag = p.zeroFlag;
+		Tau = -1;
 	}
 	
 	public State getState()
