@@ -1,6 +1,7 @@
 package api;
 
 import core.disk.Disk;
+import core.disk.DiskSpaceManager;
 import core.filestream.FileStream;
 import core.inode.INODE;
 import core.logic_fs.DeleteException;
@@ -132,6 +133,24 @@ public class FileStream_API
         return file.getValue().Write(data);
     }
 
+    public static void SetAppend(int f_descr)
+    {
+        Pair<Integer,FileStream> file = null;
+        for(Pair<Integer,FileStream> pair : streams)
+        {
+            if(pair.getKey() == f_descr)
+            {
+                file = pair;
+                break;
+            }
+        }
+        if(file == null)
+        {
+            return;
+        }
+        file.getValue().EnableAppend();
+    }
+
     public static void PrintDirContent()
     {
         //todo: print dir content;
@@ -181,5 +200,10 @@ public class FileStream_API
         {
             System.out.println("Taki blok nie istnieje");
         }
+    }
+
+    public static void PrintDiskData()
+    {
+        DiskSpaceManager.PrintDiskStatus();
     }
 }

@@ -82,4 +82,11 @@ public class DiskSpaceManager
             }
         }
     }
+
+    public static void PrintDiskStatus()
+    {
+        CalculateFreeBlocks();
+        System.out.println("Zajęte INODE: " + (9 - FreeUnitsINODE) + "/9");
+        System.out.println("Zajęte bloki danych: " + (32 - FreeUnitsData) + "/32");
+    }
 }
