@@ -8,11 +8,11 @@ public class PCB {
 	public PCB parent;
 	public Vector<PCB> childs;
 	public Integer ax, bx, cx, dx;
-	public Short programCounter;
-	public Short amountOfCommand;
+	private Short programCounter;
+	private Short amountOfCommand;
 	public boolean carryFlag;
 	public boolean zeroFlag;
-	public Integer Tau;
+	private Integer Tau;
 	//zasoby
 
 	public PCB(short pid, String name, PCB parent)//konstruktor dla inita
@@ -40,7 +40,7 @@ public class PCB {
 		bx = p.bx;
 		cx = p.cx;
 		dx = p.dx;
-		programCounter = p.programCounter;
+		setProgramCounter(p.getProgramCounter());
 		amountOfCommand = p.amountOfCommand;
 		carryFlag = p.carryFlag;
 		zeroFlag = p.zeroFlag;
@@ -138,9 +138,39 @@ public class PCB {
 			}			
 		}
 		
-		pcb += "| AX: " + ax + " | BX: " + bx + " | CX: " + cx + " | DX: " + dx + " | Program Counter: " + programCounter;
+		pcb += "| AX: " + ax + " | BX: " + bx + " | CX: " + cx + " | DX: " + dx + " | Program Counter: " + getProgramCounter();
 		
 		return pcb;
+	}
+
+	public Short getProgramCounter()
+	{
+		return programCounter;
+	}
+
+	public void setProgramCounter(Short programCounter) 
+	{
+		this.programCounter = programCounter;
+	}
+
+	public Short getAmountOfCommand()
+	{
+		return amountOfCommand;
+	}
+
+	public void setAmountOfCommand(Short amountOfCommand) 
+	{
+		this.amountOfCommand = amountOfCommand;
+	}
+
+	public Integer getTau() 
+	{
+		return Tau;
+	}
+
+	public void setTau(Integer tau) 
+	{
+		Tau = tau;
 	}
 	
 }
