@@ -1,6 +1,7 @@
 package Semaphore;
 
 import Process.PCB;
+import Srt.srt;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -25,13 +26,13 @@ public class Semaphore {
         s.value--;
         System.out.println("Wywolano metode wait, wartosc semafora po dekrementacji: " + value);
         if(s.value < 0){
-            /*
-            PCB current = Scheduler.getCurrentProcess();
+
+            PCB current = srt.getRUNNING();
             qu.add(current);
             System.out.println("Dodano proces" + current.getName() + " do kolejki oczekujacych");
             current.setStateWaiting();
             listPCB();
-            */
+
         }
     }
 
