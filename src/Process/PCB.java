@@ -161,6 +161,7 @@ public class PCB {
 	public void setAmountOfCommand(Short amountOfCommand) 
 	{
 		this.amountOfCommand = amountOfCommand;
+		programCounter = amountOfCommand;
 	}
 
 	public Integer getTau() 
